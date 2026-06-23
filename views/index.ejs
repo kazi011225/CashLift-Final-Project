@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>CashLift — See the impact of your donation</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="landing">
+    <section class="hero">
+      <h1>Know exactly what your donation does.</h1>
+      <p>
+        CashLift uses AI to translate any donation amount into a clear,
+        real-world picture of the impact it can have against global poverty.
+        No vague promises — just a clear explanation, every time you give.
+      </p>
+      <% if (!user) { %>
+        <a href="/signup" class="btn-primary">Get Started</a>
+      <% } else { %>
+        <a href="/dashboard" class="btn-primary">Go to Dashboard</a>
+      <% } %>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 CashLift. A student project.</p>
+  </footer>
+</body>
+</html>

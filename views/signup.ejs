@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Sign Up — CashLift</title>
+</head>
+<body>
+  <%- include('partials/header', { user: null }) %>
+
+  <main class="auth-page">
+    <form class="auth-form" action="/signup" method="POST">
+      <h2>Create your account</h2>
+
+      <% if (error) { %>
+        <p class="error-msg"><%= error %></p>
+      <% } %>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required minlength="6">
+
+      <button type="submit" class="btn-primary">Sign Up</button>
+
+      <p class="auth-switch">Already have an account? <a href="/signin">Sign in</a></p>
+    </form>
+  </main>
+</body>
+</html>

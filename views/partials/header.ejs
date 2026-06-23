@@ -1,0 +1,12 @@
+<header class="site-header">
+  <a href="/" class="logo">CashLift</a>
+  <nav>
+    <% if (user) { %>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout">Log out</a>
+    <% } else { %>
+      <a href="/signin">Sign In</a>
+      <a href="/signup" class="btn-signup">Sign Up</a>
+    <% } %>
+  </nav>
+</header>
