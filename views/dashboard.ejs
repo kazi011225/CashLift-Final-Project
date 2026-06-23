@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Dashboard — CashLift</title>
+</head>
+<body>
+  <%- include('partials/header', { user: user }) %>
+
+  <main class="dashboard">
+    <h1>Welcome, <%= user.username %> 👋</h1>
+
+    <% if (error) { %>
+      <p class="error-msg"><%= error %></p>
+    <% } %>
+
+    <section class="donate-card">
+      <h2>Log a donation</h2>
+      <form action="/dashboard/donate" method="POST" class="donate-form">
+        <label for="cause">Cause</label>
+        <select id="cause" name="cause" required>
+          <% causes.forEach(function(c) { %>
+            <option value="<%= c %>"><%= c %></option>
+          <% }); %>
+        </select>
+
+        <label for="amount">Amount (USD)</label>
+        <input type="number" id="amount" name="amount" min="1" step="1" placeholder="25" required>
+
+        <button type="submit" class="btn-primary">Log Donation</button>
+      </form>
+    </section>
+
+    <section class="history-card">
+      <h2>Your donations</h2>
+
+      <% if (donations.length === 0) { %>
+        <p class="empty-state">No donations logged yet. Add one above to get started.</p>
+      <% } else { %>
+        <ul class="donation-list">
+          <% donations.forEach(function(d) { %>
+            <li class="donation-item">
+              <div class="donation-main">
+                <span class="donation-cause"><%= d.cause %></span>
+                <span class="donation-amount">$<%= d.amount %></span>
+              </div>
+              <span class="donation-date"><%= d.createdAt.toLocaleDateString() %></span>
+              <% if (d.impactText) { %>
+                <p class="donation-impact"><%= d.impactText %></p>
+              <% } else { %>
+                <p class="donation-impact-pending">Impact summary coming soon</p>
+              <% } %>
+            </li>
+          <% }); %>
+        </ul>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>
