@@ -1,22 +1,22 @@
 /* ============================================================
    CashLift design tokens
-   A donation receipt, not a dashboard: ledger ink, paper warmth,
-   a navy accent for action, and a sage tone reserved for impact.
+   Bold, flat, a little neo-brutalist: thick black edges, offset
+   shadows, one navy accent. Built to feel like an app you'd
+   actually want to open, not a finance dashboard.
    ============================================================ */
 :root {
-  --ink: #1E2A38;
-  --ink-soft: #46566B;
-  --paper: #FAF6EE;
-  --paper-card: #FFFFFF;
-  --stamp: #1E2A38;
-  --stamp-dark: #2F4258;
-  --sage: #54725A;
-  --sage-soft: #E7EEE3;
-  --rule: #DCD3BD;
-  --error: #A8402F;
-  --error-bg: #FBEAE5;
+  --ink: #14161A;
+  --ink-soft: #5B5F6B;
+  --bg: #F1F0F6;
+  --surface: #FFFFFF;
+  --accent: #1E3A5F;
+  --accent-dark: #142940;
+  --accent-soft: #DCE6F0;
+  --rule: #E4E2EC;
+  --error: #D14343;
+  --error-bg: #FCE9E9;
 
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 }
@@ -29,16 +29,16 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background-color: var(--paper);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--stamp-dark);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--stamp);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -56,16 +56,16 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 22px 40px;
+  padding: 20px 40px;
   background-color: var(--ink);
 }
 
 .site-header .logo {
-  color: var(--paper);
+  color: #fff;
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
@@ -76,11 +76,11 @@ a {
 }
 
 .site-header nav a {
-  color: var(--paper);
+  color: #fff;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
-  opacity: 0.9;
+  opacity: 0.85;
   transition: opacity 0.15s ease;
 }
 
@@ -89,16 +89,17 @@ a {
 }
 
 .site-header .btn-signup {
-  background-color: var(--stamp);
-  color: var(--paper);
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-weight: 600;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-weight: 700;
   opacity: 1;
+  border: 2px solid var(--ink);
 }
 
 .site-header .btn-signup:hover {
-  background-color: var(--stamp-dark);
+  background-color: var(--accent-dark);
 }
 
 /* ---------- Landing page ---------- */
@@ -111,24 +112,29 @@ a {
 .hero {
   max-width: 640px;
   text-align: center;
-  padding: 96px 20px 56px;
+  padding: 90px 20px 56px;
 }
 
 .hero .eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--stamp-dark);
-  margin-bottom: 18px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+  font-weight: 600;
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 600;
-  line-height: 1.15;
+  font-size: 2.9rem;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   margin: 0 0 20px;
   color: var(--ink);
 }
@@ -142,34 +148,43 @@ a {
 
 .btn-primary {
   display: inline-block;
-  background-color: var(--stamp);
-  color: var(--paper);
+  background-color: var(--accent);
+  color: #fff;
   text-decoration: none;
-  padding: 13px 30px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
   cursor: pointer;
-  transition: transform 0.12s ease, background-color 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--stamp-dark);
-  transform: translateY(-1px);
+  background-color: var(--accent-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-/* Sample receipt shown on the landing page - the signature device,
-   introduced before the dashboard so the metaphor lands early. */
+.btn-primary:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Proof tag card shown on the landing page - the signature device.
+   A flat, slightly tilted sticker proving what a donation becomes. */
 .sample-receipt {
   width: 100%;
   max-width: 360px;
   margin: 0 auto 80px;
-  background: var(--paper-card);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(30, 42, 56, 0.08), 0 8px 24px rgba(30, 42, 56, 0.06);
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--ink);
   padding: 24px 26px;
   text-align: left;
+  transform: rotate(-1deg);
 }
 
 .sample-receipt .receipt-label {
@@ -178,7 +193,7 @@ a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .sample-receipt .receipt-row {
@@ -186,29 +201,41 @@ a {
   justify-content: space-between;
   align-items: baseline;
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 14px;
 }
 
 .sample-receipt .receipt-amount {
   font-family: var(--font-mono);
-  color: var(--sage);
+  color: var(--accent-dark);
 }
 
-.perforation {
-  height: 1px;
-  background-image: radial-gradient(circle, var(--rule) 1.5px, transparent 1.5px);
-  background-size: 10px 1px;
-  background-repeat: repeat-x;
-  margin: 0 -26px 16px;
+.impact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.impact-badge.pending {
+  background: var(--rule);
+  color: var(--ink-soft);
 }
 
 .sample-receipt .receipt-impact {
   font-size: 0.92rem;
   line-height: 1.55;
   color: var(--ink-soft);
-  font-style: italic;
   margin: 0;
 }
 
@@ -220,22 +247,23 @@ a {
 }
 
 .auth-form {
-  background: var(--paper-card);
+  background: var(--surface);
   width: 100%;
   max-width: 380px;
-  padding: 36px 34px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(30, 42, 56, 0.08), 0 8px 24px rgba(30, 42, 56, 0.06);
+  padding: 34px 32px;
+  border-radius: 14px;
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
   display: flex;
   flex-direction: column;
 }
 
 .auth-form h2 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 22px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .auth-form label {
@@ -248,15 +276,15 @@ a {
 .auth-form input {
   padding: 11px 12px;
   margin-bottom: 18px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
+  border: 2px solid var(--rule);
+  border-radius: 8px;
   font-size: 1rem;
   font-family: var(--font-body);
-  background: var(--paper);
+  background: var(--bg);
 }
 
 .auth-form input:focus {
-  border-color: var(--stamp);
+  border-color: var(--accent-dark);
 }
 
 .auth-switch {
@@ -266,13 +294,19 @@ a {
   color: var(--ink-soft);
 }
 
+.auth-switch a {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
 .error-msg {
   background-color: var(--error-bg);
   color: var(--error);
   padding: 10px 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 0.9rem;
   margin-bottom: 18px;
+  font-weight: 600;
 }
 
 /* ---------- Footer ---------- */
@@ -293,28 +327,29 @@ a {
 
 .dashboard h1 {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.9rem;
+  font-weight: 700;
+  font-size: 2rem;
   margin-bottom: 32px;
   color: var(--ink);
 }
 
 .donate-card,
 .history-card {
-  background: var(--paper-card);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(30, 42, 56, 0.08), 0 8px 24px rgba(30, 42, 56, 0.06);
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--ink);
   padding: 30px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .donate-card h2,
 .history-card h2 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 20px;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--ink);
 }
 
@@ -334,16 +369,16 @@ a {
 .donate-form input {
   padding: 11px 12px;
   margin-bottom: 18px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
+  border: 2px solid var(--rule);
+  border-radius: 8px;
   font-size: 1rem;
   font-family: var(--font-body);
-  background: var(--paper);
+  background: var(--bg);
 }
 
 .donate-form select:focus,
 .donate-form input:focus {
-  border-color: var(--stamp);
+  border-color: var(--accent-dark);
 }
 
 .empty-state {
@@ -352,7 +387,7 @@ a {
   font-style: italic;
 }
 
-/* Donation history - each entry styled as a torn receipt stub */
+/* Donation history - each entry as a flat ticket with a status pill */
 .donation-list {
   list-style: none;
   padding: 0;
@@ -360,15 +395,17 @@ a {
 }
 
 .donation-item {
-  padding: 0 0 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px dashed var(--rule);
+  padding: 18px 0;
+  border-bottom: 2px solid var(--rule);
+}
+
+.donation-item:first-child {
+  padding-top: 0;
 }
 
 .donation-item:last-child {
   border-bottom: none;
   padding-bottom: 0;
-  margin-bottom: 0;
 }
 
 .donation-main {
@@ -380,15 +417,15 @@ a {
 
 .donation-cause {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
   color: var(--ink);
 }
 
 .donation-amount {
   font-family: var(--font-mono);
-  font-weight: 600;
-  color: var(--sage);
+  font-weight: 700;
+  color: var(--accent-dark);
   font-size: 1.05rem;
 }
 
@@ -397,15 +434,7 @@ a {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--ink-soft);
-  margin-bottom: 12px;
-}
-
-.donation-perforation {
-  height: 1px;
-  background-image: radial-gradient(circle, var(--rule) 1.5px, transparent 1.5px);
-  background-size: 9px 1px;
-  background-repeat: repeat-x;
-  margin: 0 0 12px;
+  margin-bottom: 10px;
 }
 
 .donation-impact {
@@ -413,8 +442,6 @@ a {
   line-height: 1.55;
   color: var(--ink-soft);
   margin: 0;
-  padding-left: 14px;
-  border-left: 2px solid var(--sage-soft);
 }
 
 .donation-impact-pending {
@@ -422,18 +449,16 @@ a {
   color: var(--ink-soft);
   font-style: italic;
   margin: 0;
-  padding-left: 14px;
-  border-left: 2px solid var(--rule);
 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 480px) {
   .site-header {
-    padding: 18px 22px;
+    padding: 16px 20px;
   }
 
   .hero {
-    padding: 64px 16px 40px;
+    padding: 60px 16px 40px;
   }
 
   .hero h1 {
@@ -444,5 +469,9 @@ a {
   .history-card,
   .auth-form {
     padding: 22px;
+  }
+
+  .sample-receipt {
+    padding: 20px;
   }
 }

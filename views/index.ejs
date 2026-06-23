@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  <title>CashLift — See the impact of your donation</title>
+  <title>CashLift: See the impact of your donation</title>
 </head>
 <body>
   <%- include('partials/header') %>
@@ -19,7 +19,7 @@
       <p>
         CashLift uses AI to translate any donation amount into a clear,
         real-world picture of the impact it can have against global poverty.
-        No vague promises — just a clear explanation, every time you give.
+        No vague promises. Just a clear explanation, every time you give.
       </p>
       <% if (!user) { %>
         <a href="/signup" class="btn-primary">Get Started</a>
@@ -29,16 +29,16 @@
     </section>
 
     <div class="sample-receipt">
-      <p class="receipt-label">Sample receipt</p>
+      <p class="receipt-label">Sample proof tag</p>
       <div class="receipt-row">
         <span>Clean Water</span>
         <span class="receipt-amount">$25</span>
       </div>
-      <div class="perforation"></div>
+      <span class="impact-badge">Impact confirmed</span>
       <p class="receipt-impact">
-        "A $25 donation could provide a family with safe drinking water
-        for about a month — this is the kind of explanation you'll get
-        for every donation you log."
+        A $25 donation could provide a family with safe drinking water
+        for about a month. This is the kind of explanation you'll get
+        for every donation you log.
       </p>
     </div>
   </main>
