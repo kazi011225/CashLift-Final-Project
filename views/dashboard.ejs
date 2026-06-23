@@ -57,6 +57,21 @@
                 <span class="impact-badge pending">Pending</span>
                 <p class="donation-impact-pending">Impact summary coming soon</p>
               <% } %>
+
+              <div class="donation-actions">
+                <details class="edit-details">
+                  <summary>Edit</summary>
+                  <form action="/dashboard/donate/<%= d._id %>/edit" method="POST" class="edit-form">
+                    <label for="amount-<%= d._id %>">Amount (USD)</label>
+                    <input type="number" id="amount-<%= d._id %>" name="amount" min="1" step="1" value="<%= d.amount %>" required>
+                    <button type="submit" class="btn-secondary">Save</button>
+                  </form>
+                </details>
+
+                <form action="/dashboard/donate/<%= d._id %>/delete" method="POST" class="delete-form" onsubmit="return confirm('Delete this donation? This cannot be undone.');">
+                  <button type="submit" class="btn-delete">Delete</button>
+                </form>
+              </div>
             </li>
           <% }); %>
         </ul>

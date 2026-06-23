@@ -154,6 +154,46 @@ app.post('/dashboard/donate', requireAuth, async (req, res) => {
   }
 });
 
+app.post('/dashboard/donate/:id/edit', requireAuth, async (req, res) => {
+  try {
+    const { amount } = req.body;
+    const numericAmount = Number(amount);
+
+    // The userId filter here is what stops someone from editing a
+    // donation that isn't theirs, even if they guessed another id.
+    const donation = await Donation.findOne({ _id: req.params.id, userId: req.session.user.id });
+
+    if (!donation) {
+      const donations = await Donation.find({ userId: req.session.user.id }).sort({ createdAt: -1 });
+      return res.render('dashboard', { user: req.session.user, causes: CAUSES, donations, error: 'Donation not found.' });
+    }
+
+    // The amount changed, so the old impact text no longer matches -
+    // ask Gemini to regenerate it for the new amount.
+    donation.amount = numericAmount;
+    donation.impactText = await generateImpactText(donation.cause, numericAmount);
+    await donation.save();
+
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.error('Edit donation error:', err);
+    const donations = await Donation.find({ userId: req.session.user.id }).sort({ createdAt: -1 });
+    res.render('dashboard', { user: req.session.user, causes: CAUSES, donations, error: 'Could not update that donation. Please try again.' });
+  }
+});
+
+app.post('/dashboard/donate/:id/delete', requireAuth, async (req, res) => {
+  try {
+    // Same ownership check as edit - only delete if it belongs to this user.
+    await Donation.findOneAndDelete({ _id: req.params.id, userId: req.session.user.id });
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.error('Delete donation error:', err);
+    const donations = await Donation.find({ userId: req.session.user.id }).sort({ createdAt: -1 });
+    res.render('dashboard', { user: req.session.user, causes: CAUSES, donations, error: 'Could not delete that donation. Please try again.' });
+  }
+});
+
 // ---------- Start server ----------
 app.listen(PORT, () => {
   console.log(`CashLift running at http://localhost:${PORT}`);
